@@ -107,11 +107,6 @@ try:
             install("plyer")
 
     try:
-        from sty import fg, bg, ef, rs, Style, RgbFg
-    except ModuleNotFoundError:
-        install("sty==1.0.0rc0")
-
-    try:
         import colorama
     except ModuleNotFoundError:
         install("colorama")
@@ -737,24 +732,24 @@ async def example(basket):
     def getCurrentTime():
         return datetime.now().strftime("%H:%M:%S")
     def print_important(message):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {blue}[IMPORTANT] {reset}{message}")    
+        print(f"{printSpaces}[{getCurrentTime()}] {blue}[IMPORTANT] {reset}{message}")    
     def print_info(message):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {yellow}[INFORMATION] {reset}{message}")
+        print(f"{printSpaces}[{getCurrentTime()}] {yellow}[INFORMATION] {reset}{message}")
     def print_cmd(command):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {magenta}[COMMAND] {reset}{command}")
+        print(f"{printSpaces}[{getCurrentTime()}] {magenta}[COMMAND] {reset}{command}")
     def print_sharecmd(author, command):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {magenta}[SHARE COMMAND] {reset}({author}) {command}")
+        print(f"{printSpaces}[{getCurrentTime()}] {magenta}[SHARE COMMAND] {reset}({author}) {command}")
     def print_error(error):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {red}[ERROR] {reset}{error}")
+        print(f"{printSpaces}[{getCurrentTime()}] {red}[ERROR] {reset}{error}")
     def print_detect(message):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {cyan}[DETECT] {reset}{message}")
+        print(f"{printSpaces}[{getCurrentTime()}] {cyan}[DETECT] {reset}{message}")
     def print_sniper(message):
-        print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {green}[SNIPER] {reset}{message}")
+        print(f"{printSpaces}[{getCurrentTime()}] {green}[SNIPER] {reset}{message}")
     def print_sniper_info(firstmessage, secondmessage):
         spaces = ""
         # for i in range(len(f"[{getCurrentTime()}]")):
         #     spaces += " "
-        print(f"{printSpaces}{spaces} {fg.cYellow}{firstmessage}: {fg.cGrey}{secondmessage}")
+        print(f"{printSpaces}{spaces} {firstmessage}: {secondmessage}")
     def is_me(m):
         return m.author == basket.user
     def restart_bot():
@@ -951,35 +946,6 @@ async def example(basket):
             cfg["theme"] = newTheme
             Config.saveConfig(cfg)
 
-    if sys.platform == "win32":
-        ccolourred, ccolourgreen, ccolourblue = hex_to_rgb(__consolecolour__)
-        fg.consoleColour = Style(RgbFg(ccolourred, ccolourgreen, ccolourblue))
-
-        fg.cRed = Style(RgbFg(255, 81, 69))
-        fg.cOrange = Style(RgbFg(255, 165, 69))
-        fg.cYellow = Style(RgbFg(255, 255, 69))
-        fg.cGreen = Style(RgbFg(35, 222, 57))
-        fg.cBlue = Style(RgbFg(69, 119, 255))
-        fg.cPurple = Style(RgbFg(177, 69, 255))
-        fg.cPink = Style(RgbFg(255, 69, 212))
-
-        fg.cGrey = Style(RgbFg(207, 207, 207))
-        fg.cBrown = Style(RgbFg(199, 100, 58))
-        fg.cBlack = Style(RgbFg(0, 0, 0))
-        fg.cWhite = Style(RgbFg(255, 255, 255))
-    elif sys.platform == "linux" or sys.platform == "darwin":
-        fg.consoleColour = colorama.Fore.BLUE
-        fg.cRed = colorama.Fore.RED
-        fg.cOrange = colorama.Fore.YELLOW
-        fg.cYellow = colorama.Fore.YELLOW
-        fg.cGreen = colorama.Fore.GREEN
-        fg.cBlue = colorama.Fore.BLUE
-        fg.cPurple = colorama.Fore.MAGENTA
-        fg.cPink = colorama.Fore.MAGENTA
-        fg.cGrey = colorama.Fore.WHITE
-        fg.cBlack = colorama.Fore.BLACK
-        fg.cWhite = colorama.Fore.RESET
-
     if is_windows():
         os.system("cls")
         os.system(f"title Basket")
@@ -1065,8 +1031,8 @@ async def example(basket):
             {white}   l  l l   l /              
             {white}   \ ml lm /_/ {reset}
             """)
-            print(fg.cWhite + f"{motd}".center(width))
-            print(fg.consoleColour + '─'*width)
+            print(f"{motd}".center(width))
+            print('─'*width)
             print("")    
 
 
@@ -1114,11 +1080,11 @@ async def example(basket):
 
         if json.load(open("richpresence.json"))["enabled"] == True:
             def readyCallback(current_user): 
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {black}[RPC] {reset}Discord rich presence has been enabled.")
+                print(f"{printSpaces}[{getCurrentTime()}] {black}[RPC] {reset}Discord rich presence has been enabled.")
             def disconnectedCallback(codeno, codemsg): 
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {black}[RPC] {reset}Discord rich presence has been disabled.")
+                print(f"{printSpaces}[{getCurrentTime()}] {black}[RPC] {reset}Discord rich presence has been disabled.")
             def errorCallback(errno, errmsg): 
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {black}[RPC] {reset}An error happend.")
+                print(f"{printSpaces}[{getCurrentTime()}] {black}[RPC] {reset}An error happend.")
 
             callbacks = {'ready': readyCallback,'disconnected': disconnectedCallback,'error': errorCallback}
             discord_rpc.initialize(str(json.load(open("richpresence.json"))["client_id"]), callbacks=callbacks, log=False)
@@ -1552,58 +1518,7 @@ async def example(basket):
                                         webhook.add_embed(embed)
                                         response = webhook.execute()
     
-                                    # if __giveawaysniperui__ == True:
-                                    #     def giveawayGUI():
-                                    #         giveawayUi = tkinter.Tk()
-                                    #         giveawayUi.attributes('-topmost', True)
-
-                                    #         def addReactionForGiveaway():
-                                    #             requests.put(f"https://discord.com/api/channels/{message.channel.id}/messages/{message.id}/reactions/%F0%9F%8E%89/@me", headers={"Authorization": __token__, "User-Agent": get_random_user_agent()})
-
-                                    #         def closeGui():
-                                    #             giveawayUi.destroy()
-
-                                    #         def joinGiveaway():
-                                    #             print(f"{printSpaces} {fg.cYellow}Joined giveaway!")
-                                    #             addReactionForGiveaway()
-                                    #             closeGui()
-
-                                    #         giveawayUi.wm_title("Giveaway UI")
-                                    #         windowWidth = giveawayUi.winfo_reqwidth()
-                                    #         windowHeight = giveawayUi.winfo_reqheight()
-                                    #         positionRight = int(giveawayUi.winfo_screenwidth()/2 - windowWidth/2)
-                                    #         positionDown = int(giveawayUi.winfo_screenheight()/2 - windowHeight/2)
-                                    #         giveawayUi.geometry("+{}+{}".format(positionRight, positionDown))
-                                    #         tkinter.Label(giveawayUi, text=" ").pack()
-                                    #         mainLabel = tkinter.Label(giveawayUi, text="Would you like to join a giveaway for").pack()
-                                    #         prizeLabel = tkinter.Label(giveawayUi, text=prize).pack()
-                                    #         tkinter.Label(giveawayUi, text=" ").pack()
-                                    #         joinBtn = tkinter.Button(giveawayUi, text="Join", command=joinGiveaway, width=15, height=2, bg="green", fg="white").pack(side=tkinter.constants.LEFT)
-                                    #         cancelBtn = tkinter.Button(giveawayUi, text="Cancel", command=closeGui, width=15, height=2, bg="red", fg="white").pack(side=tkinter.constants.LEFT)
-                                    #         giveawayUi.mainloop()
-
-                                    #     giveawayGUI()
-
-                                    #     if Config.getConfig()["sounds"]:
-                                    #         if str(sounddevice.query_devices()) != "":
-                                    #             pygame.mixer.music.load(resource_path("sounds/notification.mp3"))
-                                    #             pygame.mixer.music.play(1)
-
-                                    #     send_notification("Giveaway Sniper", f"Sniped a giveaway for {prize}.", 10)
-
-                                    #     if __giveawaywebhook__ != "":
-                                    #         webhook = DiscordWebhook(url=__giveawaywebhook__)
-                                    #         embed = DiscordEmbed(title='Giveaway Sniper', description=f"Joined a giveaway for `{prize}` after pressing join in Giveaway UI.", color=__embedcolourraw__[1:])
-                                    #         embed.set_thumbnail(url=__embedimage__)
-                                    #         embed.set_footer(text=__embedfooter__, icon_url=__embedfooterimage__)
-                                    #         embed.set_timestamp()
-                                    #         embed.add_embed_field(name='Prize', value=prize, inline=False)
-                                    #         embed.add_embed_field(name='Joined After', value=f"Pressing join in Giveaway UI.", inline=False)
-                                    #         embed.add_embed_field(name='Jump to message', value=f"[Click Here!]({message.jump_url})", inline=False)
-                                    #         webhook.add_embed(embed)
-                                    #         response = webhook.execute()                                 
-
-                                    # else:   
+                                
 
                                     pygame.mixer.music.load(resource_path("sounds/notification.mp3"))
                                     pygame.mixer.music.play(1)                                          
@@ -2787,8 +2702,8 @@ There is a total of {len(hiddenChannels)} hidden channels.
             {white}   \ ml lm /_/ 
             """)
             print("")
-            print(fg.cWhite + f"{motd}".center(width))
-            print(fg.consoleColour + '─'*width)
+            print( + f"{motd}".center(width))
+            print('─'*width)
             print("")  
 
 
@@ -3595,7 +3510,7 @@ Conversion for your file has started, check the console for more information.
             print_info("Converting your file to an exe using pyinstaller...\nThis will fill your console and possibly take a while.")
             os.system(f'pyinstaller -n "{file}" -i "icon.ico" --onefile --distpath "pytoexe/" {path}')
             print_info("Conversion complete!")
-            print(f"{fg.cYellow}Path: {fg.cGrey}pytoexe/{file}.exe")
+            print("Path: pytoexe/{file}.exe")
 
             if __embedmode__:
                 embed = discord.Embed(title=f"PY To Executable", description="Conversion for your file has completed! Check the console for more information.", color=__embedcolour__)
@@ -4030,10 +3945,10 @@ You have risk mode disabled, you cant use this command.
             request = requests.get("https://discord.com/api/users/@me/library", headers={"Authorization": token, "User-Agent": get_random_user_agent()})
             if request.status_code != 200:
                 valid = "invalid"
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {fg.cRed}[INVALID] {fg.cWhite}{token}")
+                print(f"{printSpaces}[{getCurrentTime()}] [INVALID] {token}")
             else:
                 valid = "valid"
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {fg.cGreen}[VALID] {fg.cWhite}{token}")
+                print(f"{printSpaces}[{getCurrentTime()}] [VALID] {token}")
 
         await message.edit(content="Check complete, read console for more information.", delete_after=__deletetimeout__)
         print_info(f"Check complete, the token is {valid}.")
@@ -4053,10 +3968,10 @@ You have risk mode disabled, you cant use this command.
             request = requests.get("https://discord.com/api/users/@me/library", headers={"Authorization": token, "User-Agent": get_random_user_agent()})
             if request.status_code != 200:
                 invalidTokens.append(token)
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {fg.cRed}[INVALID] {fg.cWhite}{token}")
+                print(f"{printSpaces}[{getCurrentTime()}] [INVALID] {token}")
             else:
                 validTokens.append(token)   
-                print(f"{printSpaces}{fg.cGrey}[{getCurrentTime()}] {fg.cGreen}[VALID] {fg.cWhite}{token}")  
+                print(f"{printSpaces}[{getCurrentTime()}][VALID] {token}")  
 
         open("data/valid-tokens.txt", "w").write('\n'.join(validTokens))           
         open("data/invalid-tokens.txt", "w").write('\n'.join(invalidTokens))
@@ -6331,25 +6246,6 @@ You have risk mode disabled, you cant use this command.
             else:
                 await ctx.send(f"{user.name}'s pp size\n{size}")
 
-    # @basket.command(name="trumptweet", description="Make Donald Trump tweet anything.", usage="trumptweet [tweet]")
-    # async def trumptweet(ctx, *, tweet):
-    #     img = Image.open("trump-tweets/assets/bg.png")
-    #     draw = ImageDraw.Draw(img)
-    #     font = ImageFont.truetype('trump-tweets/assets/roboto.ttf', 30)
-    #     draw.text((39, 123),f"{tweet}",(0,0,0),font=font)
-
-    #     randomnum = random.randint(1000, 9999)
-    #     img.save(f'trump-tweets/{randomnum}.png')
-
-    #     file = discord.File(f'trump-tweets/{randomnum}.png')
-    #     try:
-    #         embed = discord.Embed(title='Trump Tweeted...', color=__embedcolour__)
-    #         embed.set_image(url=f'attachment://{randomnum}.png')
-    #         embed.set_footer(text=__embedfooter__, icon_url=__embedfooterimage__)
-    #         embed.timestamp = datetime.now()
-    #         await ctx.send(file=file, embed=embed)
-    #     except discord.HTTPException:
-    #         await ctx.send(file=file)
 
     @basket.command(name="rainbowrole", description="Kill Discord's API with a sexy rainbow role.", usage="rainbowrole [@role]")
     async def rainbowrole(ctx, *, role: discord.Role):
@@ -7713,7 +7609,7 @@ Status changed to: Watching {text}
             await ctx.send(embed=embed, delete_after=__deletetimeout__)
         else:
             await ctx.send(f"Nickname changed to {text}")
-    print(fg.cWhite + "")
+    print("")
 
     @basket.command(name="clearnickname", description="Clear your nickname.", usage="clearnickname")
     async def clearnickname(ctx):
