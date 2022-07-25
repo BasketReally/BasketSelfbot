@@ -1,0 +1,63 @@
+{
+    "token": "token",
+    "prefix": ".",
+    "delete_timeout": 15,
+    "theme": "basket",
+    "riskmode": true,
+    "giveaway_join_delay": 15,
+    "giveaway_sniper_ui": false,
+    "snipers": {
+        "nitro": true,
+        "privnote": true,
+        "giveaway": true,
+        "tickets": true
+    },
+    "webhooks": {
+        "nitro": "",
+        "privnote": "",
+        "giveaway": "",
+        "ping": "",
+        "friendsupdate": "",
+        "dmtyping": "",
+        "guildleave": "",
+        "selfbot": "",
+        "tickets": ""
+    },
+    "motd": {
+        "custom": false,
+        "custom_text": "Creater by Basket's"
+    },
+    "sounds": true,
+    "detections": {
+        "selfbot": true,
+        "ping": true,
+        "bans": true,
+        "deletedmessages": false,
+        "webhookmodification": true,
+        "friendsupdate": true,
+        "dmtyping": true,
+        "guildleave": true
+    },
+    "embed_mode": false,
+    "ignored_servers": {
+        "nitro": [],
+        "privnote": [],
+        "giveaways": [],
+        "pings": [],
+        "selfbots": [],
+        "bans": [],
+        "deletedmessages": [],
+        "webhookmodifications": [],
+        "tickets": [],
+        "guildleave": []
+    },
+    "api_keys": {
+        "hypixel": "",
+        "tenor": ""
+    },
+    "afkmode": {
+        "enabled": false,
+        "replymessage": "im currently afk :/"
+    },
+    "toastnotifications": true
+}

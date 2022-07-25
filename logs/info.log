@@ -1,0 +1,19 @@
+ WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:Logging in using static token
+INFO:discord.gateway:Bot has sent the IDENTIFY payload.
+INFO:discord.gateway:Bot has connected to Gateway: ["gateway-prd-main-0mdg",{"micros":262277,"calls":["discord-sessions-blue-prd-2-174",{"micros":256404,"calls":["start_session",{"micros":177662,"calls":["discord-api-ff4fc7478-j5ffn",{"micros":160353,"calls":["get_user",{"micros":11968},"add_authorized_ip",{"micros":7843},"get_guilds",{"micros":6983},"private_channels",{"micros":43480},"read_states",{"micros":14582},"coros_wait",{"micros":31426},"aliases",{"micros":4975},"affine_user_ids",{"micros":1890},"experiments",{"micros":5716}]}]},"guilds_connect",{"micros":1026,"calls":[]},"presence_connect",{"micros":0,"calls":[]}]}]}] (Session ID: 2eaf966d407a2d57cb8fa7c103f391bc).
+INFO:discord.gateway:Parsing event READY.
+INFO:discord.gateway:Parsing event READY_SUPPLEMENTAL.
+INFO:discord.gateway:Parsing event GUILD_MEMBERS_CHUNK.
+INFO:discord.gateway:Parsing event GUILD_MEMBERS_CHUNK.
+INFO:discord.gateway:Parsing event GUILD_MEMBER_LIST_UPDATE.
+INFO:discord.gateway:Parsing event GUILD_MEMBER_LIST_UPDATE.
+INFO:discord.gateway:Parsing event GUILD_MEMBER_LIST_UPDATE.
+INFO:discord.gateway:Parsing event GUILD_MEMBER_LIST_UPDATE.
+INFO:discord.gateway:Parsing event GUILD_MEMBER_LIST_UPDATE.
+INFO:discord.gateway:Parsing event PRESENCE_UPDATE.
+INFO:discord.client:Received signal to terminate bot and event loop.
+INFO:discord.client:Cleaning up tasks.
+INFO:discord.client:Cleaning up after 13 tasks.
+INFO:discord.client:All tasks finished cancelling.
+INFO:discord.client:Closing the event loop.
